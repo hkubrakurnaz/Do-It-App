@@ -1,0 +1,26 @@
+body {
+    background-color: #D8C6D6;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+    width: 800px;
+    height: 500px;
+    padding: 20px;
+    margin: 100px auto;
+    box-shadow: 0px 0px 10px 2px grey;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.item1 {
+    background-image: url('../../assets/images/3.jpg');
+    border: 1px solid black;
+    justify-items: center;
+    text-align: center;
+    width: 380px;
+    height: auto;
+}

@@ -16,12 +16,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  denemeInput="ali";
+
+  goalForm:FormGroup;
+  dateForm:FormGroup;
+  priceForm:FormGroup;
+  supervisorEmail:FormGroup;
+  yourEmail:FormGroup;
+  creditCard:FormGroup;
+
   isEditable = false;
-  goalsForm: FormGroup;
-  goalsForm1: FormGroup;
+  
+  
   prices: number[] = [
     25,50,100,200,500
    ];
@@ -38,13 +43,26 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.goalsForm = new FormGroup({
-      goal: new FormControl('',Validators.required),
-      date: new FormControl('',Validators.required),
-      price: new FormControl('',Validators.required),
-      supervisorEmail: new FormControl('',Validators.required),
-      yourEmail: new FormControl('',Validators.required)
-    })
+    this.goalForm = this._formBuilder.group({
+      goalCtrl: ['',Validators.required]
+    });
+    this.dateForm = this._formBuilder.group({
+      dateCtrl: ['',Validators.required]
+    });
+    this.priceForm = this._formBuilder.group({
+      priceCtrl: ['',Validators.required]
+    });
+    this.supervisorEmail = this._formBuilder.group({
+      supervisorEmailCtrl: ['',Validators.required]
+    });
+    this.yourEmail = this._formBuilder.group({
+      yourEmailCtrl: ['',Validators.required]
+    });
+    this.creditCard = this._formBuilder.group({
+      creditCardCtrl: ['',Validators.required]
+    });
+    
+   /*
 
     this.goalsForm1 = new FormGroup({
       goal: new FormControl('',Validators.required),
@@ -60,11 +78,11 @@ export class AppComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ''
-    });
+    });*/
   }
 
   click(){
-    console.log(this.goalsForm.value);
+    //console.log(this.goalsForm.value);
   }
 
   getUrl(){

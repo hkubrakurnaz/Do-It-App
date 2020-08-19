@@ -14,8 +14,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ThemeComponent } from './theme/theme.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [	AppComponent,
+      ThemeComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

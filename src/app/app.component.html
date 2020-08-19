@@ -1,59 +1,46 @@
-<div class="bg-img">
+<!-- <div class="bg-img">
     <mat-horizontal-stepper labelPosition="bottom" linear #stepper style="background-color: #EFF4F3; border-radius: 10px;position: absolute; margin-left: 380px;margin-top: 100px; height: 500px;">
 
-        <mat-step [stepControl]="goalsForm" [editable]="isEditable">
-            <form [formGroup]="goalsForm" class="example-form">
+        <mat-step [stepControl]="goalForm" [editable]="isEditable">
+            <form [formGroup]="goalForm">
                 <ng-template matStepLabel>Goal</ng-template>
                 <h1 style="margin-top:50px; margin-left:150px; font-size:24px;">What's your goal?</h1>
-                <input type="text" placeholder="What's your goal?" formControlName="goal" required>
-                <button mat-flat-button color="primary" style="margin-left: 173px; width: 75%;" matStepperNext>
+                <input type="text" placeholder="What's your goal?" formControlName="goalCtrl" required>
+                <button mat-flat-button color="primary" style="margin-left: 195px; width: 50%;" matStepperNext>
                     Do It
                 </button>
-                <!-- <mat-form-field class="example-full-width" style="  
-                border-radius: 5px;    margin-top: 80px;">
-                    <mat-label>What's is your goal?</mat-label>
-
-                    <input matInput type="text" formControlName="goal" required>
-                </mat-form-field> -->
-                <!-- <button mat-mini-fab color="EFF4F3" style="float: left;" matStepperPrevious>
-                    <mat-icon>keyboard_arrow_left</mat-icon>
-                  </button>
-                <button mat-mini-fab color="#EFF4F3;" style="left: 650px;" matStepperNext>
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                  </button> -->
-                <div>
-
-                </div>
-
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="goalsForm">
-            <form [formGroup]="goalsForm">
-                <ng-template matStepLabel>When</ng-template>
-                <mat-form-field>
+        <mat-step [stepControl]="dateForm" [editable]="isEditable">
+            <form [formGroup]="dateForm">
+                <ng-template matStepLabel>Date</ng-template>
+                <h1 style=" margin-left:250px; margin-top:100px; font-size:40px;">When</h1>
+                <mat-form-field style="margin-left:180px ;width: 70%;">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="date" required>
+                    <input matInput [matDatepicker]="picker" formControlName="dateCtrl" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+
                 </mat-form-field>
+                <button mat-flat-button color="primary" style="margin-left: 195px; margin-top: 10px; width: 50%;" matStepperNext>
+                    Set Deadline
+                </button>
                 <div>
-                    <button mat-mini-fab color="primary" style="margin-top:80px;float: left;" matStepperPrevious>
+                    <button mat-mini-fab color="#EFF4F3;" matStepperPrevious>
                         <mat-icon>keyboard_arrow_left</mat-icon>
                       </button>
-                    <button mat-mini-fab color="primary" style="margin-top:80px;float: right;" matStepperNext>
-                        <mat-icon>keyboard_arrow_right</mat-icon>
-                    </button>
+
                 </div>
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="goalsForm">
-            <form [formGroup]="goalsForm">
+        <mat-step [stepControl]="priceForm">
+            <form [formGroup]="priceForm">
                 <ng-template matStepLabel>Price</ng-template>
                 <mat-form-field appearance="fill">
                     <mat-label>Price</mat-label>
-                    <mat-select formControlName="price" required>
+                    <mat-select formControlName="priceCtrl" required>
                         <mat-option *ngFor=" let price of prices " [value]="price">
                             {{price}}
                         </mat-option>
@@ -69,13 +56,12 @@
                 </div>
             </form>
         </mat-step>
-
-        <mat-step [stepControl]="goalsForm">
+        <mat-step [stepControl]="supervisorEmail">
             <ng-template matStepLabel>Supervisor's Mail</ng-template>
-            <form class="example-form " [formGroup]="goalsForm">
+            <form [formGroup]="supervisorEmail">
                 <mat-form-field class="example-full-width ">
                     <mat-label>Supervisor's Email</mat-label>
-                    <input matInput [formControl]="emailFormControl " [errorStateMatcher]="matcher " placeholder="Ex. pat@example.com " formControlName="supervisorEmail">
+                    <input matInput [formControl]="emailFormControl " [errorStateMatcher]="matcher " placeholder="Ex. pat@example.com " formControlName="supervisorEmailCtrl">
                     <mat-hint>Errors appear instantly!</mat-hint>
                     <mat-error *ngIf="emailFormControl.hasError( 'email') && !emailFormControl.hasError( 'required') ">
                         Please enter a valid email address
@@ -94,13 +80,12 @@
                   </button>
             </div>
         </mat-step>
-
-        <mat-step [stepControl]="goalsForm">
-            <ng-template matStepLabel>Your Mail</ng-template>
-            <form [formGroup]="goalsForm">
+        <mat-step [stepControl]="yourEmail">
+            <ng-template matStepLabel>Supervisor's Mail</ng-template>
+            <form [formGroup]="yourEmail">
                 <mat-form-field class="example-full-width ">
-                    <mat-label>Your Email</mat-label>
-                    <input matInput [formControl]="emailFormControl " [errorStateMatcher]="matcher " placeholder="Ex. pat@example.com " formControlName="yourEmail">
+                    <mat-label>Supervisor's Email</mat-label>
+                    <input matInput [formControl]="emailFormControl " [errorStateMatcher]="matcher " placeholder="Ex. pat@example.com " formControlName="yourEmailCtrl">
                     <mat-hint>Errors appear instantly!</mat-hint>
                     <mat-error *ngIf="emailFormControl.hasError( 'email') && !emailFormControl.hasError( 'required') ">
                         Please enter a valid email address
@@ -118,9 +103,7 @@
                     <mat-icon>keyboard_arrow_right</mat-icon>
                   </button>
             </div>
-
         </mat-step>
-
         <mat-step>
             <ng-template matStepLabel>Credit Card</ng-template>
             <div>
@@ -141,7 +124,9 @@
                   </button>
 
             </div>
-        </mat-step> -->
+        </mat-step>
     </mat-horizontal-stepper>
 
-</div>
+</div> -->
+
+<app-theme></app-theme>
