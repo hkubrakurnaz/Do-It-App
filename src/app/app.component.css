@@ -1,0 +1,71 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 80%;
+}
+
+.example-full-width {
+    width: 80%;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bg-img {
+    /* The image used */
+    background-image: url('../assets/images/1.jpeg');
+    /* Control the height of the image */
+    min-height: 755px;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+
+/* Add styles to the form container */
+
+.container {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 16px;
+    background-color: white;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+input[type="text"] {
+    width: 80%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin-left: 160px;
+    margin-bottom: 30px;
+    outline: none;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
