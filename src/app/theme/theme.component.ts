@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { MyErrorStateMatcher } from '../app.component';
 
 @Component({
   selector: 'app-theme',
@@ -8,10 +9,14 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class ThemeComponent implements OnInit {
 
+
+  formGroup: FormGroup;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   isEditable = false;
   isLinear = false;
+  isOptional = false;
 
   goalForm:FormGroup;
   dateForm:FormGroup;
@@ -20,18 +25,41 @@ export class ThemeComponent implements OnInit {
   yourEmail:FormGroup;
   creditCard:FormGroup;
 
+  prices: number[] = [
+    25,50,100,200,500
+   ];
+
+   matcher = new MyErrorStateMatcher();
+  
+  get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
 
-
+    this.formGroup = this._formBuilder.group({
+      formArray: this._formBuilder.array([
+        this._formBuilder.group({
+          goalCtrl: ['', Validators.required],
+        }),
+        this._formBuilder.group({
+          dateCtrl: ['', Validators.email]
+        }),
+        this._formBuilder.group({
+          priceCtrl: ['', Validators.required],
+        }),
+        this._formBuilder.group({
+          supervisorEmailCtrl : ['', Validators.required],
+        }),
+        this._formBuilder.group({
+          yourEmailCtrl : ['', Validators.required],
+        }),
+        this._formBuilder.group({
+          creditCardCtrl : ['', Validators.required],
+        }),
+      ])
+    });
+  
     this.goalForm = this._formBuilder.group({
       goalCtrl: ['',Validators.required]
     });
@@ -42,14 +70,17 @@ export class ThemeComponent implements OnInit {
       priceCtrl: ['',Validators.required]
     });
     this.supervisorEmail = this._formBuilder.group({
-      supervisorEmailCtrl: ['',Validators.required]
+      supervisorEmailCtrl: ['',[Validators.required,Validators.email]]
     });
     this.yourEmail = this._formBuilder.group({
-      yourEmailCtrl: ['',Validators.required]
+      yourEmailCtrl: ['',[Validators.required,Validators.email]]
     });
     this.creditCard = this._formBuilder.group({
       creditCardCtrl: ['',Validators.required]
     });
+  }
+  writeConsole(){
+    console.log(this.formGroup.get('formArray').value);
   }
 
 }

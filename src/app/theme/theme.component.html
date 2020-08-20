@@ -1,60 +1,115 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-
-</head>
+<head> </head>
 
 <body>
-
-
     <p>A Grid Container consists of grid items arranged in columns and rows</p>
 
     <div class="grid-container">
-        <div class="item1">1</div>
-        <div>
-            <mat-vertical-stepper [linear]="isLinear" #stepper>
-
-                <mat-step [stepControl]="firstFormGroup">
-                    <form [formGroup]="firstFormGroup">
+        <div class="item1"></div>
+        <form [formGroup]="formGroup">
+            <mat-vertical-stepper linear #stepper formArrayName="formArray">
+                <mat-step [stepControl]="formArray?.get([0])">
+                    <form formGroupName="0">
                         <ng-template matStepLabel>What's your goal?</ng-template>
                         <mat-form-field>
                             <mat-label>Goal</mat-label>
-                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                            <input matInput placeholder="Last name, First name" formControlName="goalCtrl" required />
                         </mat-form-field>
                         <div>
                             <button color="primary" mat-button matStepperNext>Next</button>
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="secondFormGroup">
-                    <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-step [stepControl]="dateForm" [optional]="isOptional">
+                    <form [formGroup]="dateForm">
+                        <ng-template matStepLabel>Date</ng-template>
                         <mat-form-field>
-                            <mat-label>Address</mat-label>
-                            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="dateCtrl" required />
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                         <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
+                            <button color="primary" mat-button matStepperPrevious>Back</button>
+                            <button color="primary" mat-button matStepperNext>Next</button>
                         </div>
                     </form>
                 </mat-step>
-                <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
-                    <p>You are now done.</p>
+                <mat-step [stepControl]="priceForm" [optional]="isOptional">
+                    <ng-template matStepLabel>Price</ng-template>
+                    <mat-form-field appearance="fill" [formGroup]="priceForm">
+                        <mat-label>Price</mat-label>
+                        <mat-select formControlName="priceCtrl" required>
+                            <mat-option *ngFor="let price of prices" [value]="price">
+                                {{ price }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                     <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
+                        <button color="primary" mat-button matStepperPrevious>Back</button>
+                        <button color="primary" mat-button matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="supervisorEmail" [optional]="isOptional">
+                    <ng-template matStepLabel>Supervisor's Mail</ng-template>
+                    <form [formGroup]="supervisorEmail">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Supervisor's Email</mat-label>
+                            <input matInput formControlName="supervisorEmailCtrl " [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " formControlName="supervisorEmailCtrl" />
+                            <mat-hint>Errors appear instantly!</mat-hint>
+                            <mat-error *ngIf="
+                    supervisorEmail.hasError('email') &&
+                    !supervisorEmail.hasError('required')
+                  ">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="supervisorEmail.hasError('required')">
+                                Email is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                        <div>
+                            <button color="primary" mat-button matStepperPrevious>Back</button>
+                            <button color="primary" mat-button matStepperNext>  Next </button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="yourEmail" [optional]="isOptional">
+                    <ng-template matStepLabel>Your Mail</ng-template>
+                    <form [formGroup]="yourEmail">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Your Email</mat-label>
+                            <input matInput formControlName="yourEmailCtrl" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " />
+                            <mat-hint>Errors appear instantly!</mat-hint>
+                            <mat-error *ngIf="
+                    yourEmail.hasError('email') &&
+                    !yourEmail.hasError('required')
+                  ">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="yourEmail.hasError('required')">
+                                Email is <strong>required</strong>
+                            </mat-error>
+
+                        </mat-form-field>
+                        <div>
+                            <button color="primary" mat-button matStepperPrevious>Back</button>
+                            <button color="primary" mat-button matStepperNext> Next </button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [optional]="isOptional">
+                    <ng-template matStepLabel>Credit Card</ng-template>
+                    <div>
+                        <button color="primary" mat-button matStepperPrevious>Back</button>
+                        <button color="primary" mat-button matStepperNext>Done</button>
                     </div>
                 </mat-step>
             </mat-vertical-stepper>
-        </div>
-
+        </form>
     </div>
-
-
-
 </body>
 
 </html>
