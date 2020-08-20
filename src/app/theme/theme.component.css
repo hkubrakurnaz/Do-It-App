@@ -17,10 +17,13 @@ body {
 }
 
 .item1 {
-    background-image: url('../../assets/images/3.jpg');
-    border: 1px solid black;
+    background-image: url('../../assets/images/1.jpeg');
+    border: 1px solid white;
     justify-items: center;
+    border-radius: 15px;
     text-align: center;
     width: 380px;
     height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
 }

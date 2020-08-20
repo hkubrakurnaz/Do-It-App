@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { MyErrorStateMatcher } from '../app.component';
-
+import { MatDialog } from '@angular/material/dialog';
+import {CreditCardDialogComponent} from './credit-card-dialog/credit-card-dialog.component';
 @Component({
   selector: 'app-theme',
   templateUrl: './theme.component.html',
   styleUrls: ['./theme.component.css']
 })
 export class ThemeComponent implements OnInit {
-
-
   formGroup: FormGroup;
+  minDate: Date;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -31,9 +31,16 @@ export class ThemeComponent implements OnInit {
 
    matcher = new MyErrorStateMatcher();
   
+  
+
   get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder,public dialog: MatDialog) {
+    const currentYear = new Date();
+    this.minDate = new Date(currentYear);
+
+    
+  }
 
   ngOnInit() {
 
@@ -43,16 +50,16 @@ export class ThemeComponent implements OnInit {
           goalCtrl: ['', Validators.required],
         }),
         this._formBuilder.group({
-          dateCtrl: ['', Validators.email]
+          dateCtrl: ['', Validators.required]
         }),
         this._formBuilder.group({
           priceCtrl: ['', Validators.required],
         }),
         this._formBuilder.group({
-          supervisorEmailCtrl : ['', Validators.required],
+          supervisorEmailCtrl : ['',[ Validators.required,Validators.email]],
         }),
         this._formBuilder.group({
-          yourEmailCtrl : ['', Validators.required],
+          yourEmailCtrl : ['', [Validators.required,Validators.email]],
         }),
         this._formBuilder.group({
           creditCardCtrl : ['', Validators.required],
@@ -81,6 +88,9 @@ export class ThemeComponent implements OnInit {
   }
   writeConsole(){
     console.log(this.formGroup.get('formArray').value);
+  }
+  openDialog() {
+    this.dialog.open(CreditCardDialogComponent);
   }
 
 }
