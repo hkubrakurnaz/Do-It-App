@@ -12,31 +12,12 @@
         <div class="date-field">
             <div class="month">
                 <select name="Month" formControlName="expirationMonth">
-              <option value="january">January</option>
-              <option value="february">February</option>
-              <option value="march">March</option>
-              <option value="april">April</option>
-              <option value="may">May</option>
-              <option value="june">June</option>
-              <option value="july">July</option>
-              <option value="august">August</option>
-              <option value="september">September</option>
-              <option value="october">October</option>
-              <option value="november">November</option>
-              <option value="december">December</option>
-            </select>
+                    <option *ngFor="let month of months" [value]="month" >{{month}}</option>
+                </select>
             </div>
             <div class="year">
                 <select name="Year" formControlName="expirationYear">
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
+                    <option *ngFor="let year of years" [value]="year">{{year}}</option>
             </select>
             </div>
         </div>
@@ -52,9 +33,10 @@
         </div>
 
         <!-- Buttons -->
-        <div mat-dialog-actions>
-            <button mat-button mat-dialog-close type="submit" class="proceed-btn">Proceed</button>
-        </div>
+
+        <button mat-button mat-dialog-close type="submit" class="proceed-btn">Proceed</button>
+
+
 
 
     </div>

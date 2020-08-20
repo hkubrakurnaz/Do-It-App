@@ -142,12 +142,3 @@
 .proceed-btn a {
     color: #fff;
 }
-
-.paypal-btn a {
-    color: rgba(242, 242, 242, 0.7);
-}
-
-.paypal-btn {
-    padding-right: 95px;
-    background: url('http://designmodo.com/demo/creditcardform/paypal-logo.svg') no-repeat 65% 56% #009cde;
-}

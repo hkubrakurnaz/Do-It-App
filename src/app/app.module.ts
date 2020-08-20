@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ThemeComponent } from './theme/theme.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {  CreditCardDialogComponent} from '../app/theme/credit-card-dialog/credit-card-dialog.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [	AppComponent,
       ThemeComponent,
@@ -40,6 +40,8 @@ import {  CreditCardDialogComponent} from '../app/theme/credit-card-dialog/credi
     MatButtonModule,
     MatIconModule,
     MatGridListModule,
+    MatDialogModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

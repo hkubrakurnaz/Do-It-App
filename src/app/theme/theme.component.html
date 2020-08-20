@@ -11,7 +11,7 @@
                             <input matInput placeholder="Last name, First name" formControlName="goalCtrl" required />
                         </mat-form-field>
                         <div>
-                            <button color="primary" mat-button matStepperNext>Next</button>
+                            <button color="primary" mat-button matStepperNext (click)="openDialog()">Next</button>
                         </div>
                     </form>
                 </mat-step>

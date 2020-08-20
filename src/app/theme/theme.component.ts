@@ -31,15 +31,11 @@ export class ThemeComponent implements OnInit {
 
    matcher = new MyErrorStateMatcher();
   
-  
-
   get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
 
   constructor(private _formBuilder: FormBuilder,public dialog: MatDialog) {
     const currentYear = new Date();
     this.minDate = new Date(currentYear);
-
-    
   }
 
   ngOnInit() {
@@ -92,5 +88,6 @@ export class ThemeComponent implements OnInit {
   openDialog() {
     this.dialog.open(CreditCardDialogComponent);
   }
+  
 
 }
