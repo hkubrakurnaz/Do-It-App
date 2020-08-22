@@ -1,43 +1,71 @@
-<form class="credit-card" [formGroup]="cardInfo" (ngSubmit)="callingFunction()">
-    <div class="form-header">
-        <h4 class="title">Credit card detail</h4>
-    </div>
 
-    <div class="form-body">
-        <!-- Card Number -->
-        <input type="text" class="card-number" placeholder="Card Number" formControlName="cardNumber">
+ <span class="title-center mat-h1">Credit card detail</span>
 
-        <input type="text" class="card-number" placeholder="Card Holder" formControlName="cardHolder">
-        <!-- Date Field -->
-        <div class="date-field">
-            <div class="month">
-                <select name="Month" formControlName="expirationMonth">
-                    <option *ngFor="let month of months" [value]="month" >{{month}}</option>
-                </select>
-            </div>
-            <div class="year">
-                <select name="Year" formControlName="expirationYear">
-                    <option *ngFor="let year of years" [value]="year">{{year}}</option>
-            </select>
-            </div>
-        </div>
+<br>
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+        <form [formGroup]="creditCardForm" (ngSubmit)="submitForm()" novalidate>
+            <mat-form-field >
+                <input matInput placeholder="Card Number" formControlName="cardNumber" maxlength="16">
+                <!-- error -->
+                <mat-error *ngIf="errorHandling('cardNumber', 'required')">
+                    You must provide a<strong> card number</strong>
+                  </mat-error>
+                  <mat-error *ngIf="errorHandling('cardNumber', 'maxlength')">
+                    Card number must be at max 16 characters long.
+                  </mat-error>
+                  <mat-error *ngIf="errorHandling('cardNumber', 'minlength')">
+                    Card number must be at least 16 characters long.
+                  </mat-error>
+                  <mat-error *ngIf="errorHandling('cardNumber', 'pattern')">
+                    It can be only number.
+                  </mat-error>
+              </mat-form-field>
+              <br>
+    
+              <mat-form-field>
+                <input matInput placeholder="Card Holder" formControlName="cardHolder">
+                <!-- error -->
+                <mat-error *ngIf="errorHandling('cardHolder', 'required')">
+                    You must provide a<strong> card holder</strong>
+                </mat-error>
+                <mat-error *ngIf="errorHandling('cardHolder', 'pattern')">
+                    It can not be number.
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Month</mat-label>
+                <mat-select formControlName="expirationMonth">
+                  <mat-option [value]="month" *ngFor="let month of months">{{month}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field  style="margin-left:20px;">
+                <mat-label>Year</mat-label>
+                <mat-select formControlName="expirationYear">
+                  <mat-option [value]="year" *ngFor="let year of years">{{year}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <input matInput placeholder="CVC" formControlName="cvc">
+                <!-- error -->
+                <mat-error *ngIf="errorHandling('cvc', 'required')">
+                    You must provide a<strong> CVC</strong>
+                </mat-error>
+                <mat-error *ngIf="errorHandling('cvc', 'minlength')">
+                    CVC must be 3 characters long.
+                  </mat-error>
+                  <mat-error *ngIf="errorHandling('cvc', 'pattern')">
+                    It can be only number.
+                  </mat-error>
+              </mat-form-field>
 
-        <!-- Card Verification Field -->
-        <div class="card-verification">
-            <div class="cvv-input">
-                <input type="text" placeholder="CVV" formControlName="ccv">
-            </div>
-            <div class="cvv-details">
-                <p>3 or 4 digits usually found <br> on the signature strip</p>
-            </div>
-        </div>
-
-        <!-- Buttons -->
-
-        <button mat-button mat-dialog-close type="submit" class="proceed-btn">Proceed</button>
-
-
-
-
-    </div>
-</form>
+              <button mat-button type="submit"class="proceed-btn" (click)="save()">
+                Proceed
+              </button>
+        </form>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

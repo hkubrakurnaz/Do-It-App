@@ -3,20 +3,20 @@
         <div class="item1"></div>
         <form [formGroup]="formGroup">
             <mat-vertical-stepper linear #stepper formArrayName="formArray">
-                <mat-step [stepControl]="formArray?.get([0])">
-                    <form formGroupName="0">
+                <mat-step [stepControl]="goalForm">
+                    <form [formGroup]="goalForm">
                         <ng-template matStepLabel>What's your goal?</ng-template>
                         <mat-form-field>
                             <mat-label>Goal</mat-label>
                             <input matInput placeholder="Last name, First name" formControlName="goalCtrl" required />
                         </mat-form-field>
                         <div>
-                            <button color="primary" mat-button matStepperNext (click)="openDialog()">Next</button>
+                            <button color="primary" mat-button matStepperNext>Next</button>
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="formArray?.get([1])" [optional]="isOptional">
-                    <form formGroupName="1">
+                <mat-step [stepControl]="dateForm" [optional]="isOptional">
+                    <form [formGroup]="dateForm">
                         <ng-template matStepLabel>Date</ng-template>
                         <mat-form-field>
                             <mat-label>Choose a date</mat-label>
@@ -32,8 +32,8 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="formArray?.get([2])" [optional]="isOptional">
-                    <form formGroupName="2">
+                <mat-step [stepControl]="priceForm" [optional]="isOptional">
+                    <form [formGroup]="priceForm">
                         <ng-template matStepLabel>Price</ng-template>
                         <mat-form-field appearance="fill">
                             <mat-label>Price</mat-label>
@@ -49,21 +49,20 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="formArray?.get([3])" [optional]="isOptional">
+                <mat-step [stepControl]="supervisorEmailForm" [optional]="isOptional">
 
-                    <form formGroupName="3">
+                    <form [formGroup]="supervisorEmailForm">
                         <ng-template matStepLabel>Supervisor's Mail</ng-template>
                         <mat-form-field class="example-full-width">
                             <mat-label>Supervisor's Email</mat-label>
                             <input matInput formControlName="supervisorEmailCtrl " [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " formControlName="supervisorEmailCtrl" />
                             <mat-hint>Errors appear instantly!</mat-hint>
                             <mat-error *ngIf="
-                    supervisorEmail.hasError('email') &&
-                    !supervisorEmail.hasError('required')
+                            supervisorEmailForm.controls.supervisorEmailCtrl.hasError('email')
                   ">
                                 Please enter a valid email address
                             </mat-error>
-                            <mat-error *ngIf="supervisorEmail.hasError('required')">
+                            <mat-error *ngIf="supervisorEmailForm.controls.supervisorEmailCtrl.hasError('required')">
                                 Email is <strong>required</strong>
                             </mat-error>
 
@@ -74,20 +73,18 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="formArray?.get([4])" [optional]="isOptional">
+                <mat-step [stepControl]="yourEmailForm" [optional]="isOptional">
                     <ng-template matStepLabel>Your Mail</ng-template>
-                    <form formGroupName="4">
+                    <form [formGroup]="yourEmailForm">
                         <mat-form-field class="example-full-width">
                             <mat-label>Your Email</mat-label>
                             <input matInput formControlName="yourEmailCtrl" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " />
                             <mat-hint>Errors appear instantly!</mat-hint>
                             <mat-error *ngIf="
-                    yourEmail.hasError('email') &&
-                    !yourEmail.hasError('required')
-                  ">
+                            yourEmailForm.controls.yourEmailCtrl.hasError('email')">
                                 Please enter a valid email address
                             </mat-error>
-                            <mat-error *ngIf="yourEmail.hasError('required')">
+                            <mat-error *ngIf="yourEmailForm.controls.yourEmailCtrl.hasError('required')">
                                 Email is <strong>required</strong>
                             </mat-error>
 
@@ -98,11 +95,13 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="formArray?.get([5])" [optional]="isOptional">
+
+
+                <mat-step [stepControl]="creditCardForm" [optional]="isOptional">
                     <div (click)="openDialog()">
 
                     </div>
-                    <form formGroupName="4">
+                    <form [formGroup]="creditCardForm">
                         <ng-template matStepLabel>Credit Card </ng-template>
                         <!--creditCardCtrl eklenecek-->
                         <button mat-button (click)="openDialog()">Launch dialog</button>>
