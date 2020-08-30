@@ -2,23 +2,25 @@
     <div class="grid-container">
         <div class="item1"></div>
         <form>
-            <mat-vertical-stepper linear #stepper>
+            <mat-horizontal-stepper linear #stepper>
                 <mat-step [stepControl]="goalForm">
-                    <form [formGroup]="goalForm">
+                    <form [formGroup]="goalForm" style="text-align: center;">
                         <ng-template matStepLabel>What's your goal?</ng-template>
-                        <mat-form-field>
+                        <h1>What's your goal?</h1>
+                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
                             <mat-label>Goal</mat-label>
-                            <input matInput placeholder="Last name, First name" formControlName="goalCtrl" required />
+                            <input matInput placeholder="Goal" formControlName="goalCtrl" required />
                         </mat-form-field>
                         <div>
-                            <button color="primary" mat-button matStepperNext>Next</button>
+                            <button mat-raised-button color="primary" style="width: 40%;height:45px;" mat-button matStepperNext>Do It</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="dateForm" [optional]="isOptional">
-                    <form [formGroup]="dateForm">
+                    <form [formGroup]="dateForm" style="text-align: center;">
                         <ng-template matStepLabel>Date</ng-template>
-                        <mat-form-field>
+                        <h1>When</h1>
+                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
                             <mat-label>Choose a date</mat-label>
                             <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="dateCtrl" (dateChange)="calculateRemainDate()" required />
 
@@ -27,16 +29,17 @@
 
                         </mat-form-field>
                         <div class="alert-box success daysFromNow">That's {{remainDay}} days from now</div>
-                        <div>
-                            <button color="primary" mat-button matStepperPrevious>Back</button>
-                            <button color="primary" mat-button matStepperNext>Next</button>
+                        <div style="padding-top: 15px;">
+                            <button mat-raised-button color="primary" style="margin-right: 20px;" matStepperPrevious>Back</button>
+                            <button mat-raised-button color="primary" matStepperNext>Next</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="priceForm" [optional]="isOptional">
-                    <form [formGroup]="priceForm">
+                    <form [formGroup]="priceForm" style="text-align: center;">
+                        <h1>You Pay If You Fail</h1>
                         <ng-template matStepLabel>Price</ng-template>
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
                             <mat-label>Price</mat-label>
                             <mat-select formControlName="priceCtrl" required>
                                 <mat-option *ngFor="let price of prices" [value]="price">
@@ -45,19 +48,19 @@
                             </mat-select>
                         </mat-form-field>
                         <div>
-                            <button color="primary" mat-button matStepperPrevious>Back</button>
-                            <button color="primary" mat-button matStepperNext>Next</button>
+                            <button mat-raised-button color="primary" style="margin-right: 20px;" matStepperPrevious>Back</button>
+                            <button mat-raised-button color="primary" matStepperNext>Next</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="supervisorEmailForm" [optional]="isOptional">
 
-                    <form [formGroup]="supervisorEmailForm">
+                    <form [formGroup]="supervisorEmailForm" style="text-align: center;">
                         <ng-template matStepLabel>Supervisor's Mail</ng-template>
-                        <mat-form-field class="example-full-width">
+                        <h1>Who Checks If You Did It</h1>
+                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
                             <mat-label>Supervisor's Email</mat-label>
                             <input matInput formControlName="supervisorEmailCtrl " [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " formControlName="supervisorEmailCtrl" />
-                            <mat-hint>Errors appear instantly!</mat-hint>
 
                             <mat-error *ngIf="
                             supervisorEmailForm.controls.supervisorEmailCtrl.hasError('email')">
@@ -69,22 +72,19 @@
 
                         </mat-form-field>
                         <div>
-                            <button color="primary" mat-button matStepperPrevious>Back</button>
-                            <button color="primary" mat-button matStepperNext>  Next </button>
+                            <button mat-raised-button color="primary" style="margin-right: 20px;" color="primary" matStepperPrevious>Back</button>
+                            <button mat-raised-button color="primary" color="primary" matStepperNext>  Next </button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="userEmailForm" [optional]="isOptional">
-                    <ng-template matStepLabel>Your Mail</ng-template>
-                    <form [formGroup]="userEmailForm">
-                        <mat-form-field class="example-full-width">
+                    <form [formGroup]="userEmailForm" style="text-align: center;">
+                        <ng-template matStepLabel>Your Mail</ng-template>
+                        <h1>Who Are You</h1>
+
+                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
                             <mat-label>Your Email</mat-label>
                             <input matInput formControlName="userEmailCtrl" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " />
-                            <mat-hint>Errors appear instantly!</mat-hint>
-
-                            <!-- <mat-error *ngIf="supervisorEmailForm.controls.supervisorEmailCtrl.value===userEmailForm.controls.userEmailCtrl.value">
-                                Your email can't be same as supervisor.
-                            </mat-error> -->
 
                             <mat-error *ngIf="
                             userEmailForm.controls.userEmailCtrl.hasError('email')">
@@ -98,31 +98,83 @@
                                 Your email can't be same as supervisor.
                             </mat-error>
                         </mat-form-field>
-                        <!-- *ngIf="checkEmail(); else elseBlock" -->
-                        <div>
 
-                            <button color="primary" mat-button matStepperPrevious>Back</button>
-                            <button color="primary" mat-button matStepperNext (click)="openDialog()"> Next </button>
+                        <div>
+                            <button mat-raised-button style="margin-right: 20px;" color="primary" matStepperPrevious>Back</button>
+                            <button mat-raised-button color="primary" matStepperNext> Next </button>
                         </div>
 
-                        <!-- <ng-template #elseBlock>
-                            <br> Your email can't be same as supervisor.</ng-template> -->
                     </form>
                 </mat-step>
-
 
                 <mat-step [stepControl]="creditCardForm" [optional]="isOptional">
-
-                    <form [formGroup]="creditCardForm">
+                    <form [formGroup]="creditCardForm" style="text-align: center;">
                         <ng-template matStepLabel>Credit Card </ng-template>
-                        <button mat-button>Launch dialog</button>>
+                        <h1 style="margin-top: 100px;">You Pay If You Fail</h1>
+                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                            <input matInput placeholder="Card Number" formControlName="cardNumber" maxlength="16">
+
+                            <mat-error *ngIf="errorHandling('cardNumber', 'required')">
+                                You must provide a<strong> card number</strong>
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('cardNumber', 'maxlength')">
+                                Card number must be at max 16 characters long.
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('cardNumber', 'minlength')">
+                                Card number must be at least 16 characters long.
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('cardNumber', 'pattern')">
+                                It can be only number.
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" style="width: 27%;">
+                            <mat-label>Month</mat-label>
+                            <mat-select formControlName="expirationMonth">
+                                <mat-option [value]="month" *ngFor="let month of months">{{month}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" style="margin-left:30px; width: 27%;">
+                            <mat-label>Year</mat-label>
+                            <mat-select formControlName="expirationYear">
+                                <mat-option [value]="year" *ngFor="let year of years">{{year}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" style="width: 60%;">
+                            <input matInput placeholder="CVC" formControlName="cvc">
+
+                            <mat-error *ngIf="errorHandling('cvc', 'required')">
+                                You must provide a<strong> CVC</strong>
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('cvc', 'minlength')">
+                                CVC must be 3 characters long.
+                            </mat-error>
+                            <mat-error *ngIf="errorHandling('cvc', 'pattern')">
+                                It can be only number.
+                            </mat-error>
+                        </mat-form-field>
+
                         <div>
-                            <button color="primary" mat-button matStepperPrevious>Back</button>
-                            <button color="primary" mat-button matStepperNext (click)="done()">Done</button>
+                            <button mat-raised-button style="margin-right: 20px;" color="primary" matStepperPrevious>Back</button>
+                            <button mat-raised-button color="primary" matStepperNext> Next </button>
                         </div>
+
                     </form>
                 </mat-step>
-            </mat-vertical-stepper>
+
+                <mat-step>
+                    <h1 style="text-align: center; margin-top: 50px;">Do You Agree To</h1>
+                    <h2 style="text-align: center; margin-top:100px;">Launch A Start Up</h2>
+                    by {{dateForm.get('dateCtrl').value}}
+                    <p>On your deadline, we'll send {{supervisorEmailForm.get('supervisorEmailCtrl').value}} an email and ask if you have actually reached your goal.
+                        <br> If they state you have reached your goal, nothing happens. If they state you haven't, we'll charge your card once with {{priceForm.get('priceCtrl').value}} TL.
+                    </p>
+                </mat-step>
+            </mat-horizontal-stepper>
         </form>
     </div>
 </div>
