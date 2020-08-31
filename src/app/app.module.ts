@@ -15,15 +15,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ThemeComponent } from './theme/theme.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { CreditCardDialogComponent } from '../app/theme/credit-card-dialog/credit-card-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    ThemeComponent, 
-    CreditCardDialogComponent
+    ThemeComponent
   ],
   imports: [
     BrowserModule,

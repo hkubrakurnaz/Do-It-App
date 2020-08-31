@@ -1,13 +1,13 @@
-<div>
+<div class="main-grid-container">
     <div class="grid-container">
         <div class="item1"></div>
-        <form>
+        <form class="responsive">
             <mat-horizontal-stepper linear #stepper>
                 <mat-step [stepControl]="goalForm">
-                    <form [formGroup]="goalForm" style="text-align: center;">
+                    <form [formGroup]="goalForm" class="form-align">
                         <ng-template matStepLabel>What's your goal?</ng-template>
                         <h1>What's your goal?</h1>
-                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                        <mat-form-field appearance="outline">
                             <mat-label>Goal</mat-label>
                             <input matInput placeholder="Goal" formControlName="goalCtrl" required />
                         </mat-form-field>
@@ -17,10 +17,10 @@
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="dateForm" [optional]="isOptional">
-                    <form [formGroup]="dateForm" style="text-align: center;">
+                    <form [formGroup]="dateForm" class="form-align">
                         <ng-template matStepLabel>Date</ng-template>
                         <h1>When</h1>
-                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                        <mat-form-field appearance="outline">
                             <mat-label>Choose a date</mat-label>
                             <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="dateCtrl" (dateChange)="calculateRemainDate()" required />
 
@@ -36,10 +36,10 @@
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="priceForm" [optional]="isOptional">
-                    <form [formGroup]="priceForm" style="text-align: center;">
+                    <form [formGroup]="priceForm" class="form-align">
                         <h1>You Pay If You Fail</h1>
                         <ng-template matStepLabel>Price</ng-template>
-                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                        <mat-form-field appearance="outline">
                             <mat-label>Price</mat-label>
                             <mat-select formControlName="priceCtrl" required>
                                 <mat-option *ngFor="let price of prices" [value]="price">
@@ -55,10 +55,10 @@
                 </mat-step>
                 <mat-step [stepControl]="supervisorEmailForm" [optional]="isOptional">
 
-                    <form [formGroup]="supervisorEmailForm" style="text-align: center;">
+                    <form [formGroup]="supervisorEmailForm" class="form-align">
                         <ng-template matStepLabel>Supervisor's Mail</ng-template>
                         <h1>Who Checks If You Did It</h1>
-                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                        <mat-form-field appearance="outline">
                             <mat-label>Supervisor's Email</mat-label>
                             <input matInput formControlName="supervisorEmailCtrl " [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " formControlName="supervisorEmailCtrl" />
 
@@ -78,11 +78,11 @@
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="userEmailForm" [optional]="isOptional">
-                    <form [formGroup]="userEmailForm" style="text-align: center;">
+                    <form [formGroup]="userEmailForm" class="form-align">
                         <ng-template matStepLabel>Your Mail</ng-template>
                         <h1>Who Are You</h1>
 
-                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                        <mat-form-field appearance="outline">
                             <mat-label>Your Email</mat-label>
                             <input matInput formControlName="userEmailCtrl" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com " />
 
@@ -108,10 +108,10 @@
                 </mat-step>
 
                 <mat-step [stepControl]="creditCardForm" [optional]="isOptional">
-                    <form [formGroup]="creditCardForm" style="text-align: center;">
+                    <form [formGroup]="creditCardForm" class="form-align">
                         <ng-template matStepLabel>Credit Card </ng-template>
-                        <h1 style="margin-top: 100px;">You Pay If You Fail</h1>
-                        <mat-form-field appearance="outline" style="padding-top: 15px;width: 60%;">
+                        <h1>You Pay If You Fail</h1>
+                        <mat-form-field appearance="outline">
                             <input matInput placeholder="Card Number" formControlName="cardNumber" maxlength="16">
 
                             <mat-error *ngIf="errorHandling('cardNumber', 'required')">
@@ -167,12 +167,16 @@
                 </mat-step>
 
                 <mat-step>
-                    <h1 style="text-align: center; margin-top: 50px;">Do You Agree To</h1>
-                    <h2 style="text-align: center; margin-top:100px;">Launch A Start Up</h2>
-                    by {{dateForm.get('dateCtrl').value}}
-                    <p>On your deadline, we'll send {{supervisorEmailForm.get('supervisorEmailCtrl').value}} an email and ask if you have actually reached your goal.
-                        <br> If they state you have reached your goal, nothing happens. If they state you haven't, we'll charge your card once with {{priceForm.get('priceCtrl').value}} TL.
+                    <!-- <p class="header">Do You Agree To</p> -->
+                    <p class="subtitle">Launch A Start Up</p>
+                    <h2> by {{dateForm.get('dateCtrl').value}}</h2>
+                    <p>On your deadline, we'll send <b>{{supervisorEmailForm.get('supervisorEmailCtrl').value}}</b> an email and ask if you have actually reached your goal.
+                        <br><br> If they state you have reached your goal, nothing happens. If they state you haven't, we'll charge your card once with {{priceForm.get('priceCtrl').value}} TL.
                     </p>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button mat-raised-button style="margin-right: 20px;" color="primary" matStepperPrevious>Back</button>
+                        <button mat-raised-button color="primary" matStepperNext (click)="done()"> Agree To Do It </button>
+                    </div>
                 </mat-step>
             </mat-horizontal-stepper>
         </form>

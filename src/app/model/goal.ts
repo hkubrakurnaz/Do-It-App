@@ -1,11 +1,11 @@
 export class Goal {
     goalName:string;
-    deadline:Date;
-    price:string;
+    deadLine:Date;
+    price:number;
     supervisorMail:string;
     userMail:string;
     cardNumber:string;
-    cardHolder: string;
-    date:string;
-    ccv:string;
+    monthOfDate:string;
+    yearOfDate:string;
+    cvc:string;
 }
