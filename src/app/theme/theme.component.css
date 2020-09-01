@@ -1,10 +1,8 @@
 .grid-container {
     max-height: 550px;
     display: flex;
-    padding: 10px;
-    width: 70%;
+    width: 65%;
     height: calc(100vh - 240px);
-    padding: 20px;
     margin: 100px auto;
     box-shadow: 0px 0px 10px 2px grey;
     border-radius: 20px;
@@ -22,16 +20,14 @@
 
 @media only screen and (min-width:700px) {
     .item1 {
-        background-image: url('../../assets/images/7.jpg');
-        background-size: cover;
-        border: 1px solid white;
-        border-radius: 15px;
-        text-align: center;
-        max-width: 100%;
-        height: 400px;
-        width: 50%;
+        background-image: url('../../assets/images/lb6drrbl.jpg');
+        background-size: 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
+        text-align: center;
+        max-width: 100%;
+        height: auto;
+        width: 60%;
     }
 }
 
@@ -57,6 +53,7 @@ form.responsive {
 }
 
 p.header {
+    line-height: 0.9;
     text-align: center;
     margin-top: 70px;
     font-size: 48px;
@@ -64,8 +61,8 @@ p.header {
 }
 
 p.subtitle {
+    line-height: 0.9;
     text-align: center;
-    margin-top: 100px;
     font-size: 36px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -73,7 +70,14 @@ p.subtitle {
 p {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 0 100px;
+}
+
+div.responsive {
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
 }
 
 .form-align {
@@ -95,4 +99,8 @@ p {
 
 ::ng-deep .item {
     width: 350px;
+}
+
+::ng-deep .snackbarTextColor {
+    /* color: purple; */
 }

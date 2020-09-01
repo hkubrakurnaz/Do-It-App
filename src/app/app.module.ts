@@ -17,12 +17,18 @@ import { ThemeComponent } from './theme/theme.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { RouterModule } from '@angular/router';
+import { PageNotFoundComponentComponent } from './PageNotFoundComponent/PageNotFoundComponent.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent, 
-    ThemeComponent
-  ],
+    ThemeComponent,
+      ConfirmComponent,
+      PageNotFoundComponentComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,6 +47,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatGridListModule,
     MatDialogModule,
     MatSidenavModule,
+    MatSnackBarModule,
   ],
   exports:[
 

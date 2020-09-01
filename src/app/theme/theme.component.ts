@@ -9,6 +9,8 @@ import { MyErrorStateMatcher } from '../app.component';
 import { Goal } from '../model/goal';
 import { GoalService } from '../services/goal.service';
 import { ConstantVariables } from '../model/constantVariables';
+import { MatStepper } from '@angular/material/stepper';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-theme',
   templateUrl: './theme.component.html',
@@ -17,6 +19,7 @@ import { ConstantVariables } from '../model/constantVariables';
 export class ThemeComponent implements OnInit {
   goal: Goal;
 
+  boolRemainDay = true;
   remainDay = 0;
   minDate: Date;
   isOptional = false;
@@ -36,7 +39,8 @@ export class ThemeComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private goalService: GoalService
+    private goalService: GoalService,
+    private _snackBar: MatSnackBar
   ) {
     this.prices = ConstantVariables.prices;
     this.months = ConstantVariables.months;
@@ -102,12 +106,26 @@ export class ThemeComponent implements OnInit {
     this.goalService.getGoals();
   }
 
-  addGoal(goal: Goal) {
-    this.goalService.addGoal(goal);
+  addGoal(goal: Goal,stepper:MatStepper) {
+    this.goalService.addGoal(goal).subscribe((data)=>{
+      console.log(data);
+      stepper.reset();
+      this.openSnackBar('Successful!');
+    },(error) => {
+      console.log("Error:"+error);
+      this.openSnackBar('Something went wrong!');
+    })
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message,'OK', {
+      duration: 4000,
+      panelClass: ['snackbarTextColor']
+    });
   }
 
   //create goal object for post method
-  done() {
+  done(stepper:MatStepper) {
     this.goal = {
       goalName: this.goalForm.get('goalCtrl').value,
       deadLine: new Date(this.dateForm.get('dateCtrl').value),
@@ -119,7 +137,7 @@ export class ThemeComponent implements OnInit {
       yearOfDate: this.creditCardForm.get('expirationYear').value,
       cvc: this.creditCardForm.get('cvc').value,
     };
-    this.addGoal(this.goal);
+    this.addGoal(this.goal,stepper);
   }
 
   //calculate days remaining from now
@@ -150,10 +168,11 @@ export class ThemeComponent implements OnInit {
       return null;
     }
   }
-
+ 
   public errorHandling = (control: string, error: string) => {
     return this.creditCardForm.controls[control].hasError(error);
   };
+ 
   get userFormField() {
     return <FormGroup>this.userEmailForm.get('field');
   }

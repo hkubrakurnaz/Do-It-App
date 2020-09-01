@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Goal } from '../model/goal';
-
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,8 +14,8 @@ export class GoalService {
   getGoals() {
     return this.http.get<Goal[]>(this.baseURL);
   }
-  addGoal(goal: Goal) {
-    this.http
+  addGoal(goal: Goal):Observable<any> {
+    return this.http
       .post<Goal>(this.baseURL, {
         goalName: goal.goalName,
         deadLine: goal.deadLine,
@@ -26,11 +27,17 @@ export class GoalService {
         yearOfDate: goal.yearOfDate,
         cvc: goal.cvc
       })
+      .pipe(catchError(this.handleError))
+
+      /*
       .subscribe(
         (val) => {
           console.log('POST call successful value returned in body', val);
         },
         (error) => console.log('oops', error)
-      );
+      );*/
+  }
+  handleError(error){
+    return throwError(error.message || "Failed!");
   }
 }
