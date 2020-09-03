@@ -28,14 +28,28 @@ export class GoalService {
         cvc: goal.cvc
       })
       .pipe(catchError(this.handleError))
-
-      /*
-      .subscribe(
+  }
+  updateStatus(id:number,result:boolean){
+    const url = `${this.baseURL}/${id}`;
+    this.http.patch(url,
+    [
+      {
+        "path": "/status",
+        "value": result
+      }
+    ])
+    .subscribe(
         (val) => {
-          console.log('POST call successful value returned in body', val);
+            console.log("PATCH call successful value returned in body", 
+                        val);
         },
-        (error) => console.log('oops', error)
-      );*/
+        response => {
+            console.log("PATCH call in error", response);
+        },
+        () => {
+            console.log("The PATCH observable is now completed.");
+        });
+
   }
   handleError(error){
     return throwError(error.message || "Failed!");

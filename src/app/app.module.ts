@@ -18,16 +18,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { ConfirmComponent } from './confirm/confirm.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponentComponent } from './PageNotFoundComponent/PageNotFoundComponent.component';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent, 
     ThemeComponent,
-      ConfirmComponent,
-      PageNotFoundComponentComponent
+      PageNotFoundComponentComponent,
+      VerifyComponent
    ],
   imports: [
     BrowserModule,
