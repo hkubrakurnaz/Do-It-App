@@ -20,7 +20,8 @@ export class VerifyComponent implements OnInit {
   }
   getId(){
     //. The JavaScript (+) operator converts the string to a number
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
     return id;
   }
   confirm(){

@@ -29,8 +29,9 @@ export class GoalService {
       })
       .pipe(catchError(this.handleError))
   }
-  updateStatus(id:number,result:boolean){
+  updateStatus(id:string,result:boolean){
     const url = `${this.baseURL}/${id}`;
+    console.log(url);
     this.http.patch(url,
     [
       {
