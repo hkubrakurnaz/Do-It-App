@@ -1,13 +1,24 @@
-<div class="main">
-    <h1><b>DID <br> HE/SHE <br> LAUNCH A STARTUP?</b></h1>
+<div>
 
-</div>
-<div class="button">
-    <button mat-raised-button color="primary" style="font-size: 18px;" (click)="confirm()">
+    <div [hidden]="headerHidden">
+        <div class="main">
+            <h1><b>DID <br> HE/SHE <br> LAUNCH A STARTUP?</b></h1>
+        </div>
+        <div class="button">
+            <button mat-raised-button color="primary" style="font-size: 18px;" (click)="confirm()">
     <mat-icon class="icon">check</mat-icon>
     YES
   </button>
-    <button mat-raised-button style="margin-left: 5%; font-size: 18px;" color="warn" (click)="refuse()">
+            <button mat-raised-button style="margin-left: 5%; font-size: 18px;" color="warn" (click)="refuse()">
     <mat-icon class="icon">clear</mat-icon>
     NO</button>
+        </div>
+    </div>
+
+    <div [hidden]="!headerHidden" style="margin-top:100px;">
+        <h1><b>Your answer sended.</b>
+        </h1>
+        <h2> Back to
+            <a routerLink="/goal" routerLinkActive="active">home page</a></h2>
+    </div>>
 </div>

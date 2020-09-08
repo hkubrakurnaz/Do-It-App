@@ -21,13 +21,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponentComponent } from './PageNotFoundComponent/PageNotFoundComponent.component';
 import { VerifyComponent } from './verify/verify.component';
-
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent, 
     ThemeComponent,
       PageNotFoundComponentComponent,
-      VerifyComponent
+      VerifyComponent,
    ],
   imports: [
     BrowserModule,
