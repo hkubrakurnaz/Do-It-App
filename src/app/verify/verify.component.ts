@@ -32,6 +32,7 @@ export class VerifyComponent implements OnInit {
     return id;
   }
   confirm(){
+    debugger;
     this.supervisorAnswer = true;
     this.headerHidden = true;
     this.callService();

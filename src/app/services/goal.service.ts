@@ -30,6 +30,7 @@ export class GoalService {
       .pipe(catchError(this.handleError))
   }
   updateStatus(id:string,result:boolean){
+    debugger;
     const url = `${this.baseURL}/${id}`;
     console.log(url);
     this.http.patch(url,
